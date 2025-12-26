@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La cuisine de Marie Sophie | Oiishisushi</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #b3b3b3;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--secondary); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(26, 26, 26, 0.95); backdrop-filter: blur(10px); padding: 1rem 5%; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-links a { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-reservation { background: var(--primary); padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; }
+        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        /* --- HERO --- */
+        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1950&q=80') center/cover fixed; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero h1 { font-size: 4rem; line-height: 1.1; }
+
+        /* --- SECTIONS GÉNÉRALES --- */
+        section { padding: 6rem 10%; }
+        .section-title { text-align: center; margin-bottom: 4rem; }
+        .section-title h2 { font-size: 2.5rem; }
+        .section-title .line { width: 60px; height: 3px; background: var(--primary); margin: 15px auto; }
+
+        /* --- ÉQUIPE --- */
+        .team-container { display: flex; flex-direction: column; gap: 4rem; max-width: 1000px; margin: 0 auto; }
+        .team-member { display: flex; align-items: center; gap: 3rem; }
+        .team-member:nth-child(even) { flex-direction: row-reverse; }
+        .member-img { flex: 1; height: 400px; border-radius: 15px; overflow: hidden; border: 2px solid var(--primary); }
+        .member-img img { width: 100%; height: 100%; object-fit: cover; }
+        .member-info { flex: 1; }
+        .member-info h3 { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+
+        /* --- ATELIER --- */
+        .atelier-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; background: #1f1f1f; padding: 3.5rem; border-radius: 20px; }
+        .atelier-image img { width: 100%; border-radius: 10px; box-shadow: 15px 15px 0px var(--primary); }
+
+        /* --- CARTE --- */
+        .menu-wrapper { display: flex; flex-direction: column; gap: 3rem; margin-bottom: 4rem; }
+        .featured-product { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center; background: #1f1f1f; padding: 3rem; border-radius: 20px; }
+        .featured-info h3 { font-size: 2.2rem; color: var(--primary); margin-bottom: 1rem; }
+        .featured-gallery { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 180px); gap: 12px; }
+        .gal-big { grid-row: span 2; }
+        .gal-img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .item-card { position: relative; height: 350px; border-radius: 15px; overflow: hidden; }
+        .item-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .item-card:hover img { transform: scale(1.1); }
+        .item-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; }
+
+        /* --- SERVICES --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .service-card { background: #252525; padding: 3rem 2rem; text-align: center; border-radius: 15px; transition: var(--transition); border: 1px solid transparent; }
+        .service-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .service-card i { font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem; }
+
+        /* --- CONTACT --- */
+        .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; background: #252525; padding: 3rem; border-radius: 20px; }
+        input, textarea { width: 100%; padding: 1rem; background: #1a1a1a; border: 1px solid #333; color: white; margin-bottom: 1rem; border-radius: 5px; font-family: inherit; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .featured-product, .atelier-content, .contact-container, .team-member, .team-member:nth-child(even) { grid-template-columns: 1fr; flex-direction: column; text-align: center; }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+        }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">Cuisine Marie Sophie<span>.</span></a>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="#concept">Concept</a></li>
+                <li><a href="#equipe">Équipe</a></li>
+                <li><a href="#creations">Créations</a></li>
+                <li><a href="#menu">La Carte</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="fade-in">
+            <h1>L'Art du Sushi<br>à votre Événement</h1>
+            <p>Traiteur d'exception pour vos moments inoubliables.</p>
+        </div>
+    </section>
+
+    <section id="concept">
+        <div class="section-title fade-in">
+            <h2>L'Excellence Japonaise</h2>
+            <div class="line"></div>
+            <p style="max-width: 700px; margin: 0 auto; color: var(--text-gray);">Plus qu'un repas, une immersion culinaire où la fraîcheur du produit rencontre la précision du geste ancestral.</p>
+        </div>
+    </section>
+
+    <section id="equipe" style="background: #1f1f1f;">
+        <div class="section-title fade-in">
+            <h2>Nos Maîtres Sushis</h2>
+            <div class="line"></div>
+        </div>
+        <div class="team-container">
+            <div class="team-member fade-in">
+                <div class="member-img"><img src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=80" alt="Karine"></div>
+                <div class="member-info">
+                    <h3>Karine</h3>
+                    <p style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.8rem; margin-bottom:1rem;">Chef Traditionnel</p>
+                    <p>Expert en art culinaire nippon, Karine assure une maîtrise parfaite des découpes et des saveurs originelles.</p>
+                </div>
+            </div>
+            <div class="team-member fade-in">
+                <div class="member-img"><img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?auto=format&fit=crop&w=800&q=80" alt="Frédérique"></div>
+                <div class="member-info">
+                    <h3>Frédérique</h3>
+                    <p style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.8rem; margin-bottom:1rem;">Chef Créatif</p>
+                    <p>Frédérique fusionne les techniques japonaises avec une vision moderne pour créer des pièces signatures uniques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="atelier">
+        <div class="section-title fade-in">
+            <h2>Notre Atelier</h2>
+            <div class="line"></div>
+        </div>
+        <div class="atelier-content fade-in">
+            <div class="atelier-text">
+                <h3>Le Sanctuaire de la Fraîcheur</h3>
+                <p>Nos créations sont élaborées dans un atelier dédié, respectant les normes d'hygiène les plus strictes. Chaque poisson est sélectionné à l'aube et préparé à la minute.</p>
+            </div>
+            <div class="atelier-image">
+                <img src="https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=800&q=80" alt="Atelier">
+            </div>
+        </div>
+    </section>
+
+    <section id="creations" style="background: #1a1a1a;">
+        <div class="section-title fade-in">
+            <h2>Nos Créations</h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-wrapper">
+            <div class="featured-product fade-in" style="background: #1f1f1f;">
+                <div class="featured-info">
+                    <h3>Le Chef-d'Œuvre Signature</h3>
+                    <p>Une composition artistique regroupant nos plus belles innovations culinaires du mois.</p>
+                    <span style="color: var(--primary);">★ Création limitée</span>
+                </div>
+                <div class="featured-gallery">
+                    <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=600&q=80" class="gal-img gal-big">
+                    <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" class="gal-img">
+                    <img src="https://images.unsplash.com/photo-1559466273-d95e72debaf8?auto=format&fit=crop&w=600&q=80" class="gal-img">
+                </div>
+            </div>
+            <div class="items-grid">
+                <div class="item-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1562436260-8c9216eeb703?auto=format&fit=crop&w=600&q=80">
+                    <div class="item-overlay"><h3>Fusion Roll</h3></div>
+                </div>
+                <div class="item-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1590577976322-3d2d6e2130ec?auto=format&fit=crop&w=600&q=80">
+                    <div class="item-overlay"><h3>Maki Étoilé</h3></div>
+                </div>
+                <div class="item-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1617196034183-421b4917c92d?auto=format&fit=crop&w=600&q=80">
+                    <div class="item-overlay"><h3>Nigiri Design</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" style="background: #1f1f1f;">
+        <div class="section-title fade-in">
+            <h2>Côté Sushi</h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-wrapper">
+            <div class="featured-product fade-in" style="background: #1a1a1a;">
+                <div class="featured-info">
+                    <h3>Le Plateau Royal</h3>
+                    <p>Notre création emblématique de 60 pièces, incluant Toro, Truffe et Unagi.</p>
+                    <span style="color: var(--primary);">★ Recommandé pour 4-6 personnes</span>
+                </div>
+                <div class="featured-gallery">
+                    <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" class="gal-img gal-big">
+                    <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=600&q=80" class="gal-img">
+                    <img src="https://images.unsplash.com/photo-1559466273-d95e72debaf8?auto=format&fit=crop&w=600&q=80" class="gal-img">
+                </div>
+            </div>
+            <div class="items-grid">
+                <div class="item-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?auto=format&fit=crop&w=600&q=80">
+                    <div class="item-overlay"><h3>Maki Passion</h3></div>
+                </div>
+                <div class="item-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=600&q=80">
+                    <div class="item-overlay"><h3>Nigiri Saumon</h3></div>
+                </div>
+                <div class="item-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1563612116625-3012372fccce?auto=format&fit=crop&w=600&q=80">
+                    <div class="item-overlay"><h3>Unagi Grillé</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="salades">
+        <div class="section-title fade-in">
+            <h2>Fraîcheur & Salades</h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-wrapper">
+            <div class="featured-product fade-in">
+                <div class="featured-info">
+                    <h3>Poke Bowl Deluxe</h3>
+                    <p>Mélange croquant de mangue, grenade et saumon mariné sur riz vinaigré.</p>
+                </div>
+                <div class="featured-gallery">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" class="gal-img gal-big">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" class="gal-img">
+                    <img src="https://images.unsplash.com/photo-1546793665-c74683c3f38d?auto=format&fit=crop&w=600&q=80" class="gal-img">
+                </div>
+            </div>
+            <div class="items-grid">
+                <div class="item-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80">
+                    <div class="item-overlay"><h3>Wakame Salad</h3></div>
+                </div>
+                <div class="item-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80">
+                    <div class="item-overlay"><h3>Tataki Salad</h3></div>
+                </div>
+                <div class="item-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=80">
+                    <div class="item-overlay"><h3>Veggie Garden</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" style="background: #1f1f1f;">
+        <div class="section-title fade-in">
+            <h2>Nos Prestations</h2>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <i class="fas fa-utensils"></i>
+                <h3>Buffet Traiteur</h3>
+                <p>Élégance et abondance pour vos soirées privées ou mariages.</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-user-tie"></i>
+                <h3>Chef à Domicile</h3>
+                <p>Un maître sushi prépare vos plats en direct devant vos convives.</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-briefcase"></i>
+                <h3>Entreprise</h3>
+                <p>Box premium et buffets pour vos séminaires et événements corporatifs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container fade-in">
+            <div>
+                <h2>Demander un Devis</h2>
+                <p>Un projet ? Une envie ? Nous vous répondons sous 24h.</p>
+            </div>
+            <form id="quoteForm">
+                <input type="text" placeholder="Nom" required>
+                <input type="email" placeholder="Email" required>
+                <textarea rows="4" placeholder="Votre message (date, nombre d'invités...)" required></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <footer style="padding: 2rem; text-align: center; border-top: 1px solid #333;">
+        <p>&copy; 2025 Oiishisushi - Cuisine Marie Sophie - L'Art de l'Excellence.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.querySelector('i').classList.toggle('fa-bars');
+            hamburger.querySelector('i').classList.toggle('fa-times');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

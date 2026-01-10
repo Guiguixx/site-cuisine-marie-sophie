@@ -118,6 +118,21 @@
         .service-card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .service-card i { font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem; }
 
+        /* --- MAP SECTION --- */
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            filter: grayscale(0.3) invert(0);
+            transition: var(--transition);
+        }
+        /* Petit effet pour que la carte soit sombre en mode dark */
+        [data-theme="dark"] .map-container {
+            filter: grayscale(0.5) invert(0.9) hue-rotate(180deg);
+        }
+
         /* --- CONTACT --- */
         .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; background: var(--bg-section); padding: 3.5rem; border-radius: 25px; }
         input, textarea { width: 100%; padding: 1.2rem; background: var(--bg-body); border: 1px solid var(--border); color: var(--text-main); margin-bottom: 1rem; border-radius: 10px; font-family: inherit; }
@@ -147,7 +162,7 @@
                     <li><a href="#menu">Carte</a></li>
                 </ul>
                 <button id="theme-toggle"><i class="fas fa-moon" id="theme-icon"></i></button>
-                <a href="#contact" class="btn-reservation">Devis</a>
+                <a href="#contact" class="btn-reservation">Contact</a>
             </div>
         </nav>
     </header>
@@ -167,31 +182,28 @@
         </div>
     </section>
 
+    <!--SECTION ARTISAN-->
     <section id="equipe" class="bg-alt">
         <div class="section-title fade-in">
-            <h2>Nos Maîtres</h2>
+            <h2>Nos Artisans</h2>
             <div class="line"></div>
         </div>
         <div class="team-container">
             <div class="team-member fade-in">
-                <div class="member-img"><img src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=80"></div>
+                <div class="member-img"><img src="./coming-soon-2550190_1280-314660797.jpg"></div>
                 <div class="member-info">
                     <h3>Karine</h3>
                     <p style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.8rem; margin-bottom:1rem;">Chef Traditionnel</p>
                     <p>Karine assure une maîtrise parfaite des découpes et des saveurs originelles japonaises.</p>
-                </div>
-            </div>
-            <div class="team-member fade-in">
-                <div class="member-img"><img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?auto=format&fit=crop&w=800&q=80"></div>
-                <div class="member-info">
-                    <h3>Frédérique</h3>
-                    <p style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.8rem; margin-bottom:1rem;">Chef Créatif</p>
-                    <p>Frédérique fusionne les techniques pour créer des pièces signatures audacieuses.</p>
+                    <h3>Frédéric</h3>
+                    <p style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.8rem; margin-bottom:1rem;">Chef Traditionnel</p>
+                    <p>Karine assure une maîtrise parfaite des découpes et des saveurs originelles japonaises.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!--SECTION ATELIER-->
     <section id="atelier">
         <div class="section-title fade-in">
             <h2>Notre Atelier</h2>
@@ -203,8 +215,17 @@
                 <p>C'est ici que la magie opère. Un environnement ultra-maîtrisé où chaque poisson est préparé à la minute.</p>
             </div>
             <div class="atelier-image">
-                <img src="https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=800&q=80" alt="Atelier">
+                <img src="./coming-soon-2550190_1280-314660797.jpg" alt="Atelier">
             </div>
+        </div>
+        <!--GOOGLE MAPS-->
+        <div class="map-container fade-in" style="margin-top: 3rem;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2871.9031354502004!2d4.856107311480709!3d43.96136937096859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b5ed0442eaf8ad%3A0xf9815a36b5192f8!2s22%20Av.%20Fran%C3%A7ois%20Lascour%2C%2084130%20Le%20Pontet!5e0!3m2!1sfr!2sfr!4v1767286709795!5m2!1sfr!2sfr" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"></iframe>
         </div>
     </section>
 
@@ -239,13 +260,14 @@
         </div>
     </section>
 
+    <!--SECTION SUSHI-->
     <section id="menu">
         <div class="section-title fade-in">
             <h2>Côté Sushi</h2>
             <div class="line"></div>
         </div>
         <div class="menu-wrapper">
-            <div class="featured-product fade-in" class="bg-alt">
+            <div class="featured-product fade-in">
                 <div class="featured-info">
                     <h3>Le Ravier</h3>
                     <p>Des pièces prestigieuses pour vos réceptions.</p>
@@ -270,6 +292,7 @@
         </div>
     </section>
 
+    <!--SECTION SALADE-->
     <section id="salades" class="bg-alt">
         <div class="section-title fade-in">
             <h2>Fraîcheur</h2>
@@ -279,53 +302,35 @@
             <div class="featured-product fade-in">
                 <div class="featured-info">
                     <h3>Salade Fraicheur</h3>
-                    <p>Une recette incontournable qui séduit par sa fraîcheur, sagourmandise et ses saveurs parfaitement équilibrées.Préparée avec des ingrédients de saison, majoritairementfrançais, cette salade est devenue la préférée de nosclients. Légère, colorée et pleine de goût, elle sauraaccompagner vos repas en toute simplicité… ou devenir lastar de votre pause déjeuner.
-                    </p>
-                    <!--<p>9€ l'unité</p>-->
+                    <p>Une recette incontournable qui séduit par sa fraîcheur, sa gourmandise et ses saveurs parfaitement équilibrées.</p>
                 </div>
-                <!--Ici placé la salade du moment (salade fraicheur)-->
                 <div class="featured-gallery">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" class="gal-img gal-big">
-                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" class="gal-img">
-                    <img src="https://images.unsplash.com/photo-1546793665-c74683c3f38d?auto=format&fit=crop&w=600&q=80" class="gal-img">
+                    <img src="./coming-soon-2550190_1280-314660797.jpg" class="gal-img gal-big">
+                    <img src="./coming-soon-2550190_1280-314660797.jpg" class="gal-img">
+                    <img src="./coming-soon-2550190_1280-314660797.jpg" class="gal-img">
                 </div>
             </div>
-            <!--Toutes les salades sont placés-->
-            <div class="items-grid">
-                <!--Ici est placé la salade Italienne-->
-                <div class="item-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80"><div class="item-overlay"><h3>Italienne - 9€</h3></div>
-                </div>
-                <!--Ici est placé la salade Grecque-->
-                <div class="item-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80"><div class="item-overlay"><h3>Fraicheur - 9€</h3></div>
-                </div>
-                <!--Ici est placé la salade Sicilienne-->
-                <div class="item-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=80"><div class="item-overlay"><h3>Grecque - 9€</h3></div>
-                </div>
-                <div class="item-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=80"><div class="item-overlay"><h3>Sicilienne - 9€</h3></div>
-                </div>
-            </div>
-            <!--Ici sont placé les poke-->
             <div class="items-grid">
                 <div class="item-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80"><div class="item-overlay"><h3>Saumon - 12€</h3></div>
+                    <img src="./coming-soon-2550190_1280-314660797.jpg"><div class="item-overlay"><h3>Italienne - 9€</h3></div>
                 </div>
                 <div class="item-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80"><div class="item-overlay"><h3>Crevette - 12€</h3></div>
+                    <img src="./coming-soon-2550190_1280-314660797.jpg"><div class="item-overlay"><h3>Fraicheur - 9€</h3></div>
                 </div>
                 <div class="item-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=80"><div class="item-overlay"><h3>Poulet - 12€</h3></div>
+                    <img src="./coming-soon-2550190_1280-314660797.jpg"><div class="item-overlay"><h3>Grecque - 9€</h3></div>
+                </div>
+                <div class="item-card fade-in">
+                    <img src="./coming-soon-2550190_1280-314660797.jpg"><div class="item-overlay"><h3>Sicilienne - 9€</h3></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!--SECTION OU NOUS TROUVER-->
     <section id="services">
         <div class="section-title fade-in">
-            <h2>Prestations</h2>
+            <h2>Où nous trouver ?</h2>
             <div class="line"></div>
         </div>
         <div class="services-grid">
@@ -333,11 +338,23 @@
             <div class="service-card fade-in"><i class="fas fa-user-tie"></i><h3>Chef</h3><p>Expérience à domicile.</p></div>
             <div class="service-card fade-in"><i class="fas fa-briefcase"></i><h3>Pro</h3><p>Solutions entreprises.</p></div>
         </div>
+
+        <!-- GOOGLE MAPS
+        <div class="map-container fade-in" style="margin-top: 3rem;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2871.9031354502004!2d4.856107311480709!3d43.96136937096859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b5ed0442eaf8ad%3A0xf9815a36b5192f8!2s22%20Av.%20Fran%C3%A7ois%20Lascour%2C%2084130%20Le%20Pontet!5e0!3m2!1sfr!2sfr!4v1767286709795!5m2!1sfr!2sfr" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"></iframe>
+        </div>
+        -->
     </section>
 
+    <!--FORMULAIRE DE CONTACT-->
     <section id="contact" class="bg-alt">
         <div class="contact-container fade-in">
-            <div><h2>Devis</h2><p>Réponse sous 24h.</p></div>
+            <div><h2>Contact</h2></div>
             <form>
                 <input type="text" placeholder="Nom">
                 <input type="email" placeholder="Email">
